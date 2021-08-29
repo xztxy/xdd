@@ -6,7 +6,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
-
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/robfig/cron/v3"
 )
 
@@ -86,7 +86,7 @@ func (rp *Repo) addTask() {
 	if e != nil {
 		return
 	}
-	// nts := []Task{}
+        nts := []Task{}
 	for _, v := range dir_list {
 		if strings.Contains(v.Name(), ".js") {
 			f, err := os.Open(rp.path + "/" + v.Name())
@@ -97,12 +97,12 @@ func (rp *Repo) addTask() {
 			f.Close()
 			res := regexp.MustCompile(`([\d\-,\*]+ [\d\-,\*]+ [\d\-,\*]+ [*]+ [*]+)[\s\S]+Env[(]['"]([^'"]+)['"][)]`).FindStringSubmatch(string(data))
 			if len(res) > 0 {
-				// nts = append(nts, Task{
-				// 	Cron:  res[1],
-				// 	Name:  v.Name(),
-				// 	Title: res[2],
-				// 	Git:   rp.path,
-				// })
+				 nts = append(nts, Task{
+				 	Cron:  res[1],
+				 	Name:  v.Name(),
+				 	Title: res[2],
+				 	Git:   rp.path,
+				 })
 			}
 		}
 	}
