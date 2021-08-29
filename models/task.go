@@ -25,6 +25,7 @@ type Task struct {
 	Word    string
 	Name    string
 	Timeout int
+	Args    string
 	Hack    string
 	Git     string
 	Title   string
