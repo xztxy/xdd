@@ -45,7 +45,7 @@ func InitReplies() {
 		}
 	}
 	if _, ok := replies["壁纸"]; !ok {
-		replies["壁纸"] = "https://acg.toubiec.cn/random.php"
+		replies["壁纸"] = "http://img.xjh.me/random_img.php"
 	}
 }
 
